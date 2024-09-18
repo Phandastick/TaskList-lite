@@ -1,9 +1,18 @@
+html {
+    background-color: #7EACB5;
+}
+
 body{
     width: 60%;
     margin: 20px auto;
+    background-color: inherit;
 }
 
-h1 {
+#title {
     text-align: center;
     font: 40px;
+}
+
+.finishedCheck {
+    text-align: center;
 }
