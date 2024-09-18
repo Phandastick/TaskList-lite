@@ -11,4 +11,4 @@
 - Adds tasks
 - Cool checkbox that you can tick
 - What more do you want
--  ¯\\_(ツ)_/¯
+-  ¯\\\_(ツ)\_/¯
