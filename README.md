@@ -1,4 +1,4 @@
-Task List
+## Task List
 
 Plans:
 - highlight on checked box (STILL WORKING ON IT)
