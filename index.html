@@ -12,10 +12,12 @@
   <h1 id="title">To-do List</h1>
   <table class="table">
       <thead>
-          <th> Task Name</th>
-          <th> Task Description</th>
-          <th> Task Deadline</th>
-          <th> Finished? </th>
+        <th></th>
+        <th> Task Name</th>
+        <th scope="col" id = "descCol"> Task Description</th>
+        <th scope="col" id = "dlCol"> Task Deadline</th>
+        <th scope="col" id = "cbCol"> Finished? </th>
+        <th></th>
       </thead>
       <tbody id="table-body"></tbody>
   </table>
@@ -31,21 +33,23 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p>Task Name</p>
-            <input type="text" id="tfTaskName-1" class="tfCreateTask"/>
-            <p>Task Description</p>
-            <input type="text" id="tfTaskDesc-2" class="tfCreateTask"/>
-            <p>Task Deadline</p>
-            <input type="text" id="tfDeadline-3" class="tfCreateTask"/>
+            <form id="taskForm">
+              <p>Task Name</p>
+              <input type="text" id="tfTaskName" class="tfCreateTask"/>
+              <p>Task Description</p>
+              <input type="text" id="tfTaskDesc" class="tfCreateTask"/>
+              <p>Task Deadline</p>
+              <input type="text" id="tfDeadline" class="tfCreateTask"/>
+            </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="addRowBtn">Save changes</button>
+            <button type="button" class="btn btn-primary" id="addRowBtn">Add Record</button>
           </div>
         </div>
       </div>
     </div>
-
+  <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
   <script src="script.js"></script>
   </body>
   </html>
