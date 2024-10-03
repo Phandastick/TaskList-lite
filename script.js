@@ -1,7 +1,8 @@
 const myModal = document.getElementById('mymodal')
-const createTaskBtn= document.getElementById('mrbutton')
+const createTaskBtn= document.getElementById('createTaskBtn')
 const tBody = document.getElementById('table-body')
 const addRowBtn = document.getElementById('addRowBtn')
+const saveRowBtn = document.getElementById('saveRowBtn')
 
 let counter = 1;
 
@@ -133,8 +134,26 @@ function setTableData(data){
 }
 
 function getTableData(){
-  var tableData;
+  var tableElem = document.getElementsByClassName('table');
+  let tableRows = tBody.childNodes;
+  var tableData = [];
 
+  tableRows.forEach((row) => {
+    // console.log(row);
+    let nameValue = row.cells[1].innerHTML;
+    let descValue = row.cells[2].innerHTML;
+    let deadlineValue = row.cells[3].innerHTML;
+    
+    let rowData = {
+      taskName: nameValue,  
+      taskDesc: descValue,
+      taskDeadline: deadlineValue
+    };
+
+    tableData.push(rowData);
+  });
+
+  // console.log(tableData)
   return tableData;
 }
 
@@ -144,12 +163,22 @@ function deleteRow(row){
   parentTable.removeChild(deleterow);
 }
 
+function saveData(tableData){
+  // do add data to txt hoorah
+  
+}
+
 addRowBtn.addEventListener('click', () => {
   // getData in the modal
   var tableData = getRecord();
   // console.log(tableData);
   // add data from modal to table
   setTableData(tableData);
+})
+
+saveRowBtn.addEventListener('click', () => {
+  var tableData = getTableData()
+  saveData(tableData)
 })
 
 
