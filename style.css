@@ -8,6 +8,10 @@ body{
     background-color: inherit;
 }
 
+.table-row {
+    background-color:aliceblue;
+}
+
 #title {
     text-align: center;
     font: 40px;

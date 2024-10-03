@@ -17,14 +17,11 @@ function highlightRow(cb){
   let row = cb.parentNode.parentNode;
   console.log(row)
   if(cb.checked == true){
-    row.style.backgroundColor = "Green";
+    row.style.backgroundColor = "#90EE90";
   } else {
-    row.style.backgroundColor = "white";
+    row.style.backgroundColor = "aliceblue";
   }
 }
-// function highlightEmpty(tfEmpty){
-//   tfEmpty.
-// }
 
 function getRecord(){
   err = false;
@@ -55,11 +52,28 @@ function getRecord(){
   return record;
 }
 
-function addData(data){
+function addClass(row){
+  let childList = row.childNodes;
+  childList.forEach(cell => {
+    cell.classList.add(row.id)
+    cell.style.backgroundColor = "inherit";
+  });
+}
+
+function setTableData(data){
+  /*
+  Data {
+    taskName,
+    taskDesc,
+    taskDeadline
+  }
+  */
+
   //init row
   var row = tBody.insertRow();
   var rowId = "table-row-" + counter;
   row.id = rowId;
+  row.classList.add('table-row')
 
   //create row
   var textNode = document.createTextNode(counter); 
@@ -113,26 +127,29 @@ function addData(data){
   cell.classList.add('deleteCol');
   cell.appendChild(button);
 
+  addClass(row);
+
   counter++;
+}
+
+function getTableData(){
+  var tableData;
+
+  return tableData;
 }
 
 function deleteRow(row){
   var deleterow = row.parentNode.parentNode;
-  var table = document.getElementsByClassName('table')
-
-  table.deleteRow(deleterow);
+  var parentTable = deleterow.parentNode;
+  parentTable.removeChild(deleterow);
 }
 
 addRowBtn.addEventListener('click', () => {
- /*
-  1. get data from fields
-    a. return dictionary?
-  2. pass data to append table
- */
-
+  // getData in the modal
   var tableData = getRecord();
   // console.log(tableData);
-  addData(tableData);
+  // add data from modal to table
+  setTableData(tableData);
 })
 
 
