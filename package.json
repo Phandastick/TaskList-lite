@@ -1,0 +1,25 @@
+{
+  "name": "task-list",
+  "version": "1.0.0",
+  "description": "To-do List",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Phandastick/TaskList-lite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Phandastick/TaskList-lite/issues"
+  },
+  "homepage": "https://github.com/Phandastick/TaskList-lite#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

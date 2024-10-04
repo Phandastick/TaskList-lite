@@ -1,0 +1,58 @@
+html {
+    background-color: #7EACB5;
+}
+
+body{
+    width: 60%;
+    margin: 20px auto;
+    background-color: inherit;
+}
+
+.table-row {
+    background-color:aliceblue;
+}
+
+#title {
+    text-align: center;
+    font: 40px;
+}
+
+.deadlineCol, .cbCol, #dlCol, #cbCol {
+    text-align: center;
+}
+
+.row-id {
+    width:6px;
+}
+
+#descCol {
+    width: 500px;
+}
+
+#dlCol {
+    width: 150px;
+}
+
+#cbCol {
+    width: 90px;
+}
+
+.deleteCol{
+    width:50px;
+    height:50px;
+}
+
+.deleteBtn {
+    background-color: antiquewhite;
+    border: 2px solid gray;
+    border-radius: 7.5px;
+    width: fit-content;
+    padding: 2px;
+    align-items: center;
+}
+
+.Checkboxes {
+    width:20px;
+    height:20px;
+}
+

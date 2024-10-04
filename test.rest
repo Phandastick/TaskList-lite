@@ -1,0 +1,45 @@
+###
+GET http://localhost:6969/
+
+
+###
+POST http://localhost:6969/taskList/doAddNewRecord
+Content-Type: application/json
+
+[
+{
+    "taskName": "Task",
+    "taskDesc": "Description",
+    "taskDeadline": "12/9"
+},
+{
+    "taskName": "Task Name 2",
+    "taskDesc": "Description",
+    "taskDeadline": "12/9"
+},
+{
+    "taskName": "Task Name",
+    "taskDesc": "Description",
+    "taskDeadline": "12/9"
+},
+{
+    "taskName": "Task Name",
+    "taskDesc": "Description",
+    "taskDeadline": "12/9"
+},
+{
+    "taskName": "Task Name",
+    "taskDesc": "Description",
+    "taskDeadline": "12/9"
+  },
+  {
+    "taskName": "Task Name",
+    "taskDesc": "Description",
+    "taskDeadline": "12/9"
+  },
+  {
+    "taskName": "Task Name",
+    "taskDesc": "Description",
+    "taskDeadline": "12/9"
+  }
+]
