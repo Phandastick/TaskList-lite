@@ -22,33 +22,54 @@
       <tbody id="table-body"></tbody>
   </table>
 
-  <button type="button" class="btn btn-secondary" id="createTaskBtn" data-bs-toggle="modal" data-bs-target="#mymodal">Create Task</button>
-  <button type="button" class="btn btn-secondary" id="saveRowBtn" >Save List</button>
+  <button type="button" class="btn btn-secondary" id="createTaskBtn" data-bs-toggle="modal" data-bs-target="#addRowModal">Create Task</button>
+  <button type="button" class="btn btn-secondary" id="saveRowBtn" data-bs-toggle="modal" data-bs-target="#confirmModal">Update List</button>
+  <button type="button" class="btn btn-secondary" id="getListBtn" >Pull List</button>
 
-  <div class="modal" tabindex="-1" id="mymodal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">New Task</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="taskForm">
-              <p>Task Name</p>
-              <input type="text" id="tfTaskName" class="tfCreateTask"/>
-              <p>Task Description</p>
-              <input type="text" id="tfTaskDesc" class="tfCreateTask"/>
-              <p>Task Deadline</p>
-              <input type="text" id="tfDeadline" class="tfCreateTask"/>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="addRowBtn">Add Record</button>
-          </div>
+  <!-- Add Data dialog -->
+  <div class="modal" tabindex="-1" id="addRowModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">New Task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="taskForm">
+            <p>Task Name</p>
+            <input type="text" id="tfTaskName" class="tfCreateTask"/>
+            <p>Task Description</p>
+            <input type="text" id="tfTaskDesc" class="tfCreateTask"/>
+            <p>Task Deadline</p>
+           <input type="text" id="tfDeadline" class="tfCreateTask"/>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id = "closeModalBtn" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="addRowBtn" >Add Record</button>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Confirm save data -->
+  <div class="modal" tabindex="-1" id="confirmModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Save?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Confirm to save? This action will overwrite the current save.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="confirmSaveBtn" data-bs-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
   <script src="script.js"></script>
   </body>

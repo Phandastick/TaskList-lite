@@ -2,24 +2,15 @@ const { isUtf8 } = require('node:buffer');
 const fs = require('node:fs');
 
 class getRecords {
-    constructor(file){
+    async getData(){ 
         fs.readFile('./public/data.txt', 'utf8', (err, data) => {
             if(err) {
                 console.error(err);
-                return;
+                return null;
             }
             console.log(data)
-            this.data = data;
+            return JSON.stringify(data)
         })
-    }
-
-    parseData(){
-        
-    }
-
-    getData(){ 
-        let parsedData = parseData();
-        return parsedData; 
     }
 }
 

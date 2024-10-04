@@ -1,17 +1,17 @@
-const myModal = document.getElementById('mymodal')
 const createTaskBtn= document.getElementById('createTaskBtn')
-const tBody = document.getElementById('table-body')
-const addRowBtn = document.getElementById('addRowBtn')
 const saveRowBtn = document.getElementById('saveRowBtn')
+const getListBtn = document.getElementById('getListBtn')
+//add row modal
+const addRowModal = document.getElementById('addRowModal')
+const addRowBtn = document.getElementById('addRowBtn')
+const closeBtn = document.getElementById('closeModalBtn')
+// double confirm modal
+const confirmModal = document.getElementById('confirmModal')
+const confirmSaveBtn = document.getElementById('confirmSaveBtn')
+
+const tBody = document.getElementById('table-body')
 
 let counter = 1;
-
-createTaskBtn.addEventListener('click', () => {
-  const myInput = document.getElementById('tfTaskName')
-  myModal.addEventListener('shown.bs.modal', () => {
-    myInput.focus()
-  })
-})
 
 function highlightRow(cb){
   //add highlight color here
@@ -21,6 +21,13 @@ function highlightRow(cb){
     row.style.backgroundColor = "#90EE90";
   } else {
     row.style.backgroundColor = "aliceblue";
+  }
+}
+
+function clearElements(){
+  textFields = document.getElementsByClassName('tfCreateTask');
+  for(var i = 0; i < textFields.length; i++){
+    textFields[i].value = '';
   }
 }
 
@@ -167,26 +174,92 @@ function deleteRow(row){
   parentTable.removeChild(deleterow);
 }
 
-function saveData(tableData){
+async function saveData(tableData){
   // do add data to txt hoorah
+  const url = 'http://localhost:6969/taskList/doAddNewRecord';
+  // const load = ;
+  const request = new Request(url, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: tableData
+  })
+
+  try {
+    const response = await fetch(request);
+
+    if(!response.ok){
+      throw new Error(`Response Status: ${response.status}`)
+    }
+
+  } catch(e) {
+    console.log(e.message);
+  }
 
 }
 
-addRowBtn.addEventListener('click', () => {
-  // getData in the modal
-  var tableData = getRecord();
-  // console.log(tableData);
-  // add data from modal to table
-  setTableData(tableData);
-})
+async function retrieveRecords(){
+  const url = 'http://localhost:6969/taskList/doGetRecords';
+  // const load = ;
 
-saveRowBtn.addEventListener('click', () => {
-  var tableData = getTableData()
-  saveData(tableData)
-})
+  try {
+    const response = await fetch(url);
+
+    if(!response.ok){
+      throw new Error(`Response Status: ${response.status}`)
+    }
+
+    var data = response.body;
+    console.log('Response: ' + response);
+    console.log(data);
+  } catch(e) {
+    console.log(e.message);
+  }
 
 
-// document.addEventListener("DOMContentLoaded", function(event) {
-//   var form = document.getElementById('taskForm');
-//   form.addEventListener();
-// });
+  return data;
+}
+
+function initListeners(){
+
+  //button to pull up modal to add data
+  createTaskBtn.addEventListener('click', () => {
+    const myInput = document.getElementById('tfTaskName')
+    addRowModal.addEventListener('shown.bs.modal', () => {
+      myInput.focus()
+    })
+  })
+  
+  //button to get row and push data into table
+  addRowBtn.addEventListener('click', () => {
+    // getData in the modal
+    var tableData = getRecord();
+    // console.log(tableData);
+    // add data from modal to table
+    if(tableData){
+      setTableData(tableData);
+    }
+  })
+  
+  //button to save data to data.txt
+  confirmSaveBtn.addEventListener('click', () => {
+    var tableData = getTableData()
+    saveData(tableData)
+  })
+  
+  //button that closes modal and clears all text in the text fields
+  closeBtn.addEventListener('click', () => {
+    clearElements();
+  })
+
+  getListBtn.addEventListener('click', () => {
+    var data = retrieveRecords();
+    setTableData(data);
+  })
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  initListeners();
+});
+

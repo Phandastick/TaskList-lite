@@ -12,6 +12,10 @@ body{
     background-color:aliceblue;
 }
 
+.tfCreateTask {
+    width: 400px;
+}
+
 #title {
     text-align: center;
     font: 40px;

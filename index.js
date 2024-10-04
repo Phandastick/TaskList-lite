@@ -9,6 +9,7 @@ app.use(express.json()) // for parsing application/json
 app.use(express.static('public'))
 
 const addRecordsClass = new addRecords();
+const getRecordsClass = new getRecords();
 
 //routes
 
@@ -16,12 +17,18 @@ app.get('/', (req, res) => {
     res.send('HI')
 })
 
-app.get('/taskList/doGetAllRecords', (req,res) => {
-    getRecords();
-    res.sendStatus(200).send(records);
+app.get('/taskList/doGetRecords', (req,res) => {
+    var data = getRecordsClass.getData();
+    if(data) {
+        res.sendStatus(200).send(data);
+    } else {
+        res.sendStatus(400);
+    }
 })
 
 app.post('/taskList/doAddNewRecord', async (req,res) => {
+    console.log('Received Post')
+    
     const body = req.body
     var array = []
     var count = 0
@@ -31,7 +38,6 @@ app.post('/taskList/doAddNewRecord', async (req,res) => {
         count++
     });
 
-    console.log('Received Post')
 
     await addRecordsClass.writeFile(array)
     .then(function (success){
