@@ -31,6 +31,20 @@ function clearElements(){
   }
 }
 
+function clearTable(){
+  var tableRows = tBody.childNodes;
+  tableRows.forEach(row => {
+    row.remove();
+  });
+}
+
+//add array to table
+function addTableData(arr){
+  arr.forEach((e)=>{
+    setTableData(e);
+  })
+}
+
 function getRecord(){
   err = false;
   let elemName = document.getElementById('tfTaskName');
@@ -200,24 +214,33 @@ async function saveData(tableData){
 }
 
 async function retrieveRecords(){
+  console.log('> Script: trying to retrieve records');
   const url = 'http://localhost:6969/taskList/doGetRecords';
   // const load = ;
 
   try {
     const response = await fetch(url);
-
+    
+    console.log(response);
+    console.log(response.clone().json());
+    const contentType = response.headers.get("content-type");
+    console.log(contentType);
+    
     if(!response.ok){
       throw new Error(`Response Status: ${response.status}`)
     }
 
-    var data = response.body;
+    var resJson = await response.json();
+    var data = resJson.data;
     console.log('Response: ' + response);
-    console.log(data);
+    console.log('Response data: ' + resJson);
+    console.log('Response data: ' + data);
+    data.forEach((e) => {
+      console.log(e);
+    })
   } catch(e) {
     console.log(e.message);
   }
-
-
   return data;
 }
 
@@ -254,8 +277,8 @@ function initListeners(){
   })
 
   getListBtn.addEventListener('click', () => {
-    var data = retrieveRecords();
-    setTableData(data);
+    clearTable();
+    retrieveRecords().then(data => addTableData(data));
   })
 }
 

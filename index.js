@@ -17,14 +17,19 @@ app.get('/', (req, res) => {
     res.send('HI')
 })
 
-app.get('/taskList/doGetRecords', (req,res) => {
-    var data = getRecordsClass.getData();
-    if(data) {
-        res.sendStatus(200).send(data);
+app.get('/taskList/doGetRecords', async function(req, res) {
+    console.log('Received GET request for doGetRecords...');
+
+    const payload = await getRecordsClass.getData();  // Call the async function
+
+    
+    if (payload) {
+        res.json({ message: 'GET request received!', data: payload }); // Send the parsed data
     } else {
-        res.sendStatus(400);
+        res.sendStatus(400); // Send a 400 status code if there's an error
     }
-})
+});
+
 
 app.post('/taskList/doAddNewRecord', async (req,res) => {
     console.log('Received Post')
