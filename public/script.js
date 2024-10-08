@@ -6,8 +6,8 @@ const addRowModal = document.getElementById('addRowModal')
 const addRowBtn = document.getElementById('addRowBtn')
 const closeBtn = document.getElementById('closeModalBtn')
 // double confirm modal
-const confirmModal = document.getElementById('confirmModal')
 const confirmSaveBtn = document.getElementById('confirmSaveBtn')
+const confirmGetBtn = document.getElementById('confirmGetBtn')
 
 const tBody = document.getElementById('table-body')
 
@@ -31,11 +31,15 @@ function clearElements(){
   }
 }
 
-function clearTable(){
+async function clearTable(){
   var tableRows = tBody.childNodes;
-  tableRows.forEach(row => {
-    row.remove();
-  });
+  var len = tableRows.length
+  for(var i = len-1; i >= 0; i--){
+    await tableRows[i].remove();
+  }
+  console.log('Cleared table')
+  counter = 1;
+  return true;
 }
 
 //add array to table
@@ -221,10 +225,10 @@ async function retrieveRecords(){
   try {
     const response = await fetch(url);
     
-    console.log(response);
-    console.log(response.clone().json());
+    // console.log(response);
+    // console.log(response.clone().json());
     const contentType = response.headers.get("content-type");
-    console.log(contentType);
+    // console.log(contentType);
     
     if(!response.ok){
       throw new Error(`Response Status: ${response.status}`)
@@ -232,12 +236,12 @@ async function retrieveRecords(){
 
     var resJson = await response.json();
     var data = resJson.data;
-    console.log('Response: ' + response);
-    console.log('Response data: ' + resJson);
-    console.log('Response data: ' + data);
-    data.forEach((e) => {
-      console.log(e);
-    })
+    // console.log('Response: ' + response);
+    // console.log('Response data: ' + resJson);
+    // console.log('Response data: ' + data);
+    // data.forEach((e) => {
+    //   console.log(e);
+    // })
   } catch(e) {
     console.log(e.message);
   }
@@ -276,9 +280,12 @@ function initListeners(){
     clearElements();
   })
 
-  getListBtn.addEventListener('click', () => {
-    clearTable();
-    retrieveRecords().then(data => addTableData(data));
+  confirmGetBtn.addEventListener('click', () =>{
+    console.log('> Get List button clicked')
+    clearTable().then(() =>{
+      console.log('> Retrieving records...')
+      retrieveRecords().then(data => addTableData(data));
+    })
   })
 }
 

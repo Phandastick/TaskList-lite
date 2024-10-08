@@ -23,8 +23,8 @@
   </table>
 
   <button type="button" class="btn btn-secondary" id="createTaskBtn" data-bs-toggle="modal" data-bs-target="#addRowModal">Create Task</button>
-  <button type="button" class="btn btn-secondary" id="saveRowBtn" data-bs-toggle="modal" data-bs-target="#confirmModal">Update List</button>
-  <button type="button" class="btn btn-secondary" id="getListBtn" >Pull List</button>
+  <button type="button" class="btn btn-secondary" id="saveRowBtn" data-bs-toggle="modal" data-bs-target="#confirmSaveModal">Update List</button>
+  <button type="button" class="btn btn-secondary" id="getListBtn" data-bs-toggle="modal" data-bs-target="#confirmGetModal">Pull List</button>
 
   <!-- Add Data dialog -->
   <div class="modal" tabindex="-1" id="addRowModal">
@@ -53,7 +53,7 @@
   </div>
 
   <!-- Confirm save data -->
-  <div class="modal" tabindex="-1" id="confirmModal">
+  <div class="modal" tabindex="-1" id="confirmSaveModal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -66,6 +66,25 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" id="confirmSaveBtn" data-bs-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm get and overwrite data -->
+  <div class="modal" tabindex="-1" id="confirmGetModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Save?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Confirm to get data? This action will overwrite the whole table.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="confirmGetBtn" data-bs-dismiss="modal">Save changes</button>
         </div>
       </div>
     </div>
