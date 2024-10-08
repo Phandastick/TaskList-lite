@@ -20,8 +20,9 @@ app.get('/', (req, res) => {
 app.get('/taskList/doGetRecords', async function(req, res) {
     console.log('Received GET request for doGetRecords...');
 
+    // payload is returned with a promised if not awaited
+    // await waits for the promise to be resolved
     const payload = await getRecordsClass.getData();  // Call the async function
-
     
     if (payload) {
         res.json({ message: 'GET request received!', data: payload }); // Send the parsed data
@@ -32,8 +33,9 @@ app.get('/taskList/doGetRecords', async function(req, res) {
 
 
 app.post('/taskList/doAddNewRecord', async (req,res) => {
-    console.log('Received Post')
+    console.log('Received Post to add new records')
     
+    // from the 
     const body = req.body
     var array = []
     var count = 0
